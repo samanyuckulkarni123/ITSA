@@ -1,30 +1,4 @@
-"""Train, select, freeze, and evaluate the interpretable six-term ITSA model.
 
-This is the self-contained reproduction script for the final family-independent
-score. It:
-
-1. constructs intrinsic alignment, JSD, and repeat-sensitive features;
-2. compares predefined 6-, 8-, and 10-term candidates;
-3. sweeps L2 logistic-regression regularization strength using five
-   protein-identity-held-out folds on the small benchmark;
-4. selects the fewest-term candidate within 0.005 ROC AUC of the best;
-5. refits the selected model on the complete small benchmark; and
-6. freezes and applies the model unchanged to the large benchmark.
-
-Family identity is used only to locate token records and balance the validation
-folds. It is never supplied to the logistic regression as a predictor. Small
-labels fit/select the model; large labels are used only for final evaluation.
-
-Repeat percentiles are cohort-relative and are computed without labels. This
-matches the analysis reported in the paper materials: small percentiles use the
-small protein cohort and large percentiles use the large protein cohort.
-
-Run from anywhere with:
-
-    python3 Code/train_six_term_model.py
-
-Required packages: numpy, pandas, scikit-learn.
-"""
 
 from __future__ import annotations
 
